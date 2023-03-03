@@ -21,20 +21,12 @@ function Main( {onEditProfile, onAddPlace, onEditAvatar, onCardClick} ) {
       // устанавливаем данные профиля
       setProfileData(profileData); 
       // генерируем карточки
-      const newCards = cardData.map(card => {
-        return {
-          name: card.name,
-          likes: card.likes,
-          link: card.link
-        };
-      });
-      setCards(newCards);
+      setCards(cardData);
     })
     .catch(err => {
       console.log(err)
     })
   }, []);
-
 
   return (
     <main className="content">
@@ -56,8 +48,8 @@ function Main( {onEditProfile, onAddPlace, onEditAvatar, onCardClick} ) {
       <button className="profile__button-add" type="button" onClick={onAddPlace}></button>
     </section>
     <section className="elements" aria-label="Места">
-      {cards.map((card, index) => (
-        <Card key={index} card={card} onCardClick={onCardClick}/>
+      {cards.map((card) => (
+        <Card key={card._id} card={card} onCardClick={onCardClick}/>
       ))}
     </section>
   </main>

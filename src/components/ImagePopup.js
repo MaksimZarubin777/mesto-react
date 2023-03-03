@@ -3,7 +3,7 @@ function ImagePopup( {card, onClose} ) {
     <div className={`popup popup_place ${card ? "popup_opened" : ''}`} id="popup-place-info">
       <div className="popup__container-place">
         <button className="popup__button-close" id="popup-confirm-info" type="button" onClick={onClose}></button>
-        <img src={card ? card.link : ''} className="popup__place-img" alt={card ? card.name : ''} />
+        <img src={card?.link} className="popup__place-img" alt={card?.name} />
         <p className="popup__place-title"></p>
       </div>
     </div>
