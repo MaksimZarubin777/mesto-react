@@ -19,15 +19,6 @@ function App() {
   // стейт-переменная для попап с картинкой
   const [selectedCard, setSelectedCard] = useState(null);
 
-  // стейт переменная для инпутов
-  const [formInput, setFormInput] = useState({
-    profileName: '',
-    profileDescription: '',
-    placeName: '',
-    placeLink: '',
-    avatarLink: ''
-  });
-
   const [cards, setCards] = React.useState([]);
 
   const [currentUser, setCurrentUser] = useState({});
@@ -68,7 +59,6 @@ function App() {
   function handleCardClick(card) {
     setSelectedCard(card)
   };
-
   
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -95,11 +85,6 @@ function App() {
     })
     .catch((err) => console.log(err))
   }
-
-  // вводим инпуты - берем предыдущее значение всех инпутов, через таргет определяем инпут, его атрибут name - это ключ, значением становится то, что введено
-  // function handleInput(evt) {
-  //   setFormInput(previousInputs => ({...previousInputs, [evt.target.name]: evt.target.value}))
-  // }
 
   // закрываем попапы
   function closeAllPopups() {
