@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
-import api from "../utils/Api";
+import api from "../utils/rename";
 import Card from "./Card";
 
 function Main( {cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete} ) {

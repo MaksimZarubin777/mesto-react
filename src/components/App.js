@@ -5,7 +5,7 @@ import Main from './Main.js';
 import EditProfilePopup from './EditProfilePopup';
 import Footer from './Footer.js';
 import ImagePopup from './ImagePopup';
-import api from '../utils/Api';
+import api from '../utils/rename';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
