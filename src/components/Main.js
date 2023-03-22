@@ -1,55 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 import api from "../utils/Api";
 import Card from "./Card";
 
-function Main( {onEditProfile, onAddPlace, onEditAvatar, onCardClick} ) {
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
-  const [cards, setCards] = React.useState([]);
-
-  function setProfileData(data) {
-    setUserName(data.name);
-    setUserDescription(data.about);
-    setUserAvatar(data.avatar);
-  };
-
-  // запрос данный профиля и карточек
-  React.useEffect(() => {
-    Promise.all([api.getProfileInfo(), api.getInitialCard()])
-    .then(([profileData, cardData]) => {
-      // устанавливаем данные профиля
-      setProfileData(profileData); 
-      // генерируем карточки
-      setCards(cardData);
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }, []);
+function Main( {cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete} ) {
+  const userData = React.useContext(CurrentUserContext)
 
   return (
     <main className="content">
     <section className="profile">
       <div className="profile__avatar-block">
-        {/* В задании сказано, что картинку нужно передать через style. 
-        Если использовать img, то из-за отсутствия ссылки в src на сайте отображается alt.
-        Можно ли было использовть img, а картинку передавать в src? Почему просят передать именно через style? */}
-        <div className="profile__avatar" onClick={onEditAvatar}  style={{ backgroundImage: `url(${userAvatar})`}}/>
+        <div className="profile__avatar" onClick={onEditAvatar}  style={{ backgroundImage: `url(${userData.avatar})`}}/>
         <div className="profile__avatar-update"></div>
       </div>
       <div className="profile__info">
         <div className="profile__title">
-          <h1 className="profile__text-title">{userName}</h1>
+          <h1 className="profile__text-title">{userData.name}</h1>
           <button className="profile__button-edit" type="button" onClick={onEditProfile}></button>
         </div>
-        <p className="profile__text-subtitle">{userDescription}</p>
+        <p className="profile__text-subtitle">{userData.about}</p>
       </div>
       <button className="profile__button-add" type="button" onClick={onAddPlace}></button>
     </section>
     <section className="elements" aria-label="Места">
       {cards.map((card) => (
-        <Card key={card._id} card={card} onCardClick={onCardClick}/>
+        <Card key={card._id} card={card} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete}/>
       ))}
     </section>
   </main>

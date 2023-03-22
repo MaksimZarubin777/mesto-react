@@ -1,6 +1,6 @@
 import React from "react";
 
-function PopupWithForm( {name, title, buttonText, isOpen, onClose, children} ) {
+function PopupWithForm( {name, title, buttonText, isOpen, onClose, children, onSubmit} ) {
 
   // закрытие попапа через эскейп
   React.useEffect(() => {
@@ -37,7 +37,7 @@ function PopupWithForm( {name, title, buttonText, isOpen, onClose, children} ) {
       <div className="popup__container">
         <button className="popup__button-close" type="button" onClick={onClose}></button>
         <h2 className="popup__title">{title}</h2>
-        <form id="change-info" name={`form-${name}`} noValidate>
+        <form id="change-info" name={`form-${name}`} noValidate onSubmit={onSubmit}>
           {children}
           <button type='submit' className="popup__button-submit">{buttonText}</button>
         </form>

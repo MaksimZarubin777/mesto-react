@@ -30,9 +30,9 @@ export class Api {
     }) 
   }
 
-  handlePutLike (cardId) {
+  handleLikeStatus (cardId, isLiked) {
     return fetch (`${this._baseurl}/cards/${cardId}/likes`, {
-      method: 'PUT',
+      method: isLiked ? 'PUT' : 'DELETE',
       headers: this._headers
     })
     .then(res => {
@@ -40,15 +40,15 @@ export class Api {
     }) 
   }
 
-  handleDeleteLike (cardId) {
-    return fetch (`${this._baseurl}/cards/${cardId}/likes`, {
-      method: 'DELETE',
-      headers: this._headers
-    })
-    .then(res => {
-      return this._getResponseData(res)
-    }) 
-  }
+  // handleDeleteLike (cardId) {
+  //   return fetch (`${this._baseurl}/cards/${cardId}/likes`, {
+  //     method: 'DELETE',
+  //     headers: this._headers
+  //   })
+  //   .then(res => {
+  //     return this._getResponseData(res)
+  //   }) 
+  // }
 
   updateProfileInfo (data) {
     return fetch(`${this._baseurl}/users/me`, {
@@ -56,7 +56,7 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        about: data.description,
+        about: data.about,
       })
     })
     .then(res => {
