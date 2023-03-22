@@ -24,8 +24,6 @@ return (
         name="avatarLink" 
         placeholder="Ссылка на картинку" 
         type="url" 
-        // value={formInput.avatarLink}
-        // onChange={handleInput}
         className="popup__input" 
         required 
         ref={avatarRef}/>

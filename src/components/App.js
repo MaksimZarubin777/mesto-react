@@ -28,6 +28,7 @@ function App() {
     .then(data => {
       setCurrentUser(data)
     })
+    .catch((err) => console.log(err))
   },[])
 
   useEffect(() => {
@@ -111,6 +112,7 @@ function App() {
       setCards([newCard, ...cards]); 
       closeAllPopups()
     })
+    .catch((err) => console.log(err))
   }
 
   return (
